@@ -21,6 +21,18 @@ $_element1 = "Test"; // Válida
 
 echo "_myvar, myvar, var7, _element1 son variables válidas.<br />";
 echo "_7var (no puede empezar por un número) y house*5 (no se permiten caracteres especiales como el asterisco) no son variables válidas.<br />";
+
+$a = "ManejadorSQL";  
+$b = 'MySQL';        
+$c = &$a;     
+echo "a = $a, b = $b, c = $c<br />";
+
+$a = "PHP server";
+$b = &$a;
+echo "a = $a, b = $b, c = $c<br />";
+echo "lo que ocurrio en el segundo bloque de asignaciones es que se modifico el valor 
+de  a y b, pero b hace referencia a la varibale a de igual manera que lo hace c, por lo que imprimen lo mismo";
+
 ?>
 </body>
 </html>
