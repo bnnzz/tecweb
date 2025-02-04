@@ -127,6 +127,18 @@ echo var_export($c, true); // Debería mostrar: false
 echo" e:";
 echo var_export($e, true); // Debería mostrar: false
 
+echo"<br />";   
+echo "7. Usando la variable predefinida _SERVER <br />";       
+
+// a. Versión de Apache y PHP
+echo "a. Versión de Apache: " . $_SERVER['SERVER_SOFTWARE'] . "<br />";
+echo "   Versión de PHP: " . phpversion() . "<br />";
+
+// b. Nombre del sistema operativo del servidor
+echo "b. Sistema operativo del servidor: " . PHP_OS . "<br />";  // También se puede usar $_SERVER['SERVER_SOFTWARE'] para obtener el software del servidor
+
+// c. Idioma del navegador del cliente
+echo "c. Idioma del navegador (cliente): " . $_SERVER['HTTP_ACCEPT_LANGUAGE'] . "<br />";
 ?>
 </body>
 </html>
