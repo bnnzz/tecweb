@@ -106,6 +106,26 @@ $c = (double) $a;
 
 echo ("a = $a, b = $b, c = $c<br />");
 
+echo "<h3>6. Variables de tipo booleano</h3>";
+$a = "0";    // Cadena "0", que se considera FALSE en una evaluación booleana.
+$b = "TRUE"; // Cadena "TRUE", que se considera TRUE en una evaluación booleana.
+$c = FALSE;  // Es FALSE explícitamente.
+$d = ($a OR $b);  // $d será TRUE porque "TRUE" es interpretado como TRUE.
+$e = ($a AND $c); // $e será FALSE, porque uno de los operandos es FALSE.
+$f = ($a XOR $b); // $f será TRUE, porque el operador XOR evalúa a TRUE cuando los operandos son diferentes.
+
+var_dump($a); // "0", se considera FALSE
+var_dump($b); // "TRUE", se considera TRUE
+var_dump($c); // FALSE
+var_dump($d); // TRUE
+var_dump($e); // FALSE
+var_dump($f); // TRUE
+echo "<br />";
+echo"mostrar con un echo: <br />";
+echo"c: ";
+echo var_export($c, true); // Debería mostrar: false
+echo" e:";
+echo var_export($e, true); // Debería mostrar: false
 
 ?>
 </body>
