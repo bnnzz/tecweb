@@ -98,6 +98,15 @@ echo "<br /><br />";
 // Liberar variables
 unset($a, $b, $c, $z);
 
+echo "<h3>5. dar valor a vaiables </h3>";
+$a = "7 personas";
+$b = (integer) $a;
+$a = "9E3";
+$c = (double) $a;
+
+echo ("a = $a, b = $b, c = $c<br />");
+
+
 ?>
 </body>
 </html>
