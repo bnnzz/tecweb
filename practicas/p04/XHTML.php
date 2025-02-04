@@ -75,10 +75,28 @@ $z[0] = "MySQL";
 var_dump($z);
 echo "<br />";
 
+
+echo "<h3>4. Acceso a variables con \$GLOBALS</h3>";
+
+// Usamos $GLOBALS para acceder a las variables globales
+echo "Valor de \$GLOBALS['a']: ";
+var_dump($GLOBALS['a']);
+echo "<br /><br />";
+
+echo "Valor de \$GLOBALS['b']: ";
+var_dump($GLOBALS['b']);
+echo "<br /><br />";
+
+echo "Valor de \$GLOBALS['c']: ";
+var_dump($GLOBALS['c']);
+echo "<br /><br />";
+
+echo "Valor de \$GLOBALS['z']: ";
+var_dump($GLOBALS['z']);
+echo "<br /><br />";
+
 // Liberar variables
 unset($a, $b, $c, $z);
-
-
 
 ?>
 </body>
