@@ -9,7 +9,7 @@
 <body>
 <?php
 // 1. Determina cuál de las siguientes variables son válidas y explica por qué:
-echo "1.  <br />";
+echo "<h3> 1.Determinar variables validas   <br /> </h3>";
 $_myvar = "Test";  // Válida
 $myvar = "Test";   // Válida
 $var7 = "Test";    // Válida
@@ -23,7 +23,7 @@ echo "_myvar, myvar, var7, _element1 son variables válidas.<br />";
 echo "_7var (no puede empezar por un número) y house*5 (no se permiten caracteres especiales como el asterisco) no son variables válidas.<br />";
 unset($_myvar, $myvar, $var7, $_element1);  
 
-echo "2.  <br />";
+echo "<h3> 2.Proporcionar valores  <br /> </h3>";
 $a = "ManejadorSQL";  
 $b = 'MySQL';        
 $c = &$a;     
@@ -37,7 +37,7 @@ de  a y b, pero b hace referencia a la varibale a de igual manera que lo hace c,
 unset($a, $b, $c);  
 
 
-echo "3.  <br />";
+echo "<h3> 3.Mostar contenido y verificar evolucion del tipo  <br /> </h3>";
 echo"1.- " ;
 $a = "PHP5";
 var_dump($a);
@@ -76,7 +76,7 @@ var_dump($z);
 echo "<br />";
 
 
-echo "<h3>4. Acceso a variables con \$GLOBALS</h3>";
+echo "<h3>4.Acceso a variables con \$GLOBALS</h3>";
 
 // Usamos $GLOBALS para acceder a las variables globales
 echo "Valor de \$GLOBALS['a']: ";
@@ -98,7 +98,7 @@ echo "<br /><br />";
 // Liberar variables
 unset($a, $b, $c, $z);
 
-echo "<h3>5. dar valor a vaiables </h3>";
+echo "<h3>5.Dar valor a vaiables y ver saldia del script </h3>";
 $a = "7 personas";
 $b = (integer) $a;
 $a = "9E3";
@@ -106,7 +106,7 @@ $c = (double) $a;
 
 echo ("a = $a, b = $b, c = $c<br />");
 
-echo "<h3>6. Variables de tipo booleano</h3>";
+echo "<h3>6.Variables de tipo booleano</h3> <br />";
 $a = "0";    // Cadena "0", que se considera FALSE en una evaluación booleana.
 $b = "TRUE"; // Cadena "TRUE", que se considera TRUE en una evaluación booleana.
 $c = FALSE;  // Es FALSE explícitamente.
@@ -114,11 +114,17 @@ $d = ($a OR $b);  // $d será TRUE porque "TRUE" es interpretado como TRUE.
 $e = ($a AND $c); // $e será FALSE, porque uno de los operandos es FALSE.
 $f = ($a XOR $b); // $f será TRUE, porque el operador XOR evalúa a TRUE cuando los operandos son diferentes.
 
+echo"<br />";
 var_dump($a); // "0", se considera FALSE
+echo"<br />";
 var_dump($b); // "TRUE", se considera TRUE
+echo"<br />";
 var_dump($c); // FALSE
+echo"<br />";
 var_dump($d); // TRUE
+echo"<br />";
 var_dump($e); // FALSE
+echo"<br />";
 var_dump($f); // TRUE
 echo "<br />";
 echo"mostrar con un echo: <br />";
@@ -128,7 +134,7 @@ echo" e:";
 echo var_export($e, true); // Debería mostrar: false
 
 echo"<br />";   
-echo "7. Usando la variable predefinida _SERVER <br />";       
+echo "<h3> 7.Usando la variable predefinida _SERVER <br /> </h3>";        
 
 // a. Versión de Apache y PHP
 echo "a. Versión de Apache: " . $_SERVER['SERVER_SOFTWARE'] . "<br />";
