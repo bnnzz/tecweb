@@ -9,7 +9,7 @@
 <body>
 <?php
 // 1. Determina cuál de las siguientes variables son válidas y explica por qué:
-
+echo "1.  <br />";
 $_myvar = "Test";  // Válida
 $myvar = "Test";   // Válida
 $var7 = "Test";    // Válida
@@ -21,7 +21,9 @@ $_element1 = "Test"; // Válida
 
 echo "_myvar, myvar, var7, _element1 son variables válidas.<br />";
 echo "_7var (no puede empezar por un número) y house*5 (no se permiten caracteres especiales como el asterisco) no son variables válidas.<br />";
+unset($_myvar, $myvar, $var7, $_element1);  
 
+echo "2.  <br />";
 $a = "ManejadorSQL";  
 $b = 'MySQL';        
 $c = &$a;     
@@ -31,7 +33,52 @@ $a = "PHP server";
 $b = &$a;
 echo "a = $a, b = $b, c = $c<br />";
 echo "lo que ocurrio en el segundo bloque de asignaciones es que se modifico el valor 
-de  a y b, pero b hace referencia a la varibale a de igual manera que lo hace c, por lo que imprimen lo mismo";
+de  a y b, pero b hace referencia a la varibale a de igual manera que lo hace c, por lo que imprimen lo mismo <br />";
+unset($a, $b, $c);  
+
+
+echo "3.  <br />";
+echo"1.- " ;
+$a = "PHP5";
+var_dump($a);
+echo "<br />";
+
+echo"2.- ";
+$z[] = &$a;
+var_dump($z);
+echo "<br />";
+
+echo"3.- ";
+$b = "5a version de PHP";
+var_dump($b);
+echo "<br />";
+
+echo"4.- " ; 
+$c = intval($b)*10;
+var_dump($c);
+echo "<br />";
+
+echo "5.- ";
+// **Solución:** Convertir `$b` a cadena antes de concatenar
+$a .= strval($b);
+var_dump($a);
+echo "<br />";
+
+echo"6.- ";
+$b = intval($b);
+$b *= $c;
+var_dump($b);
+echo "<br />";
+
+echo"7.- "  ;
+$z[0] = "MySQL";
+var_dump($z);
+echo "<br />";
+
+// Liberar variables
+unset($a, $b, $c, $z);
+
+
 
 ?>
 </body>
