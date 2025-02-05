@@ -16,7 +16,16 @@
         }
     ?>
 
-    <h2>Ejemplo de POST</h2>
+
+  <h2>Ejercicio 2.-</h2>
+    <p>Crea un programa para la generación repetitiva de 3 números aleatorios hasta obtener una
+    secuencia compuesta por: imparr, par, impar</p>
+    <?php
+     require_once __DIR__ . '/src/funciones.php';
+     generar_secuencia(); 
+    ?>
+
+    <h2>Ejemplo de POST</h2> 
     <form action="http://localhost/tecweb/practicas/p04/index.php" method="post">
         Name: <input type="text" name="name"><br>
         E-mail: <input type="text" name="email"><br>
@@ -30,6 +39,6 @@
             echo '<br>';
             echo $_POST["email"];
         }
-    ?>
+    ?> 
 </body>
 </html>
