@@ -34,6 +34,25 @@
     ?>
 
 
+<h2>Ejercicio 4.- </h2>
+    <p>Crear un arreglo cuyos índices van de 97 a 122 y cuyos valores son las letras de la ‘a’
+a la ‘z’. Usa la función chr(n) que devuelve el caracter cuyo código ASCII es n para poner
+el valor en cada índice.</p>
+    <?php
+     require_once __DIR__ . '/src/funciones.php';
+     ArregloLet(); 
+
+     $arreglo = ArregloLet();
+    ?>
+       <h3>Tabla de caracteres ASCII</h3>
+    <table>
+        <?php
+        // Leer el arreglo y generar la tabla con foreach
+        foreach ($arreglo as $key => $value) {
+            echo "<tr><td>[ $key ]</td><td>=>$value</td></tr>";
+        }
+        ?>
+    </table>
 
     <h2>Ejemplo de POST</h2> 
     <form action="http://localhost/tecweb/practicas/p04/index.php" method="post">

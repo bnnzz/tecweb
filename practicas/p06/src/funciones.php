@@ -62,6 +62,15 @@ function multiplo()
 }
 
 
+function ArregloLet() {
+    $arreglo = [];
+    for ($i = 97; $i <= 122; $i++) {
+        $arreglo[$i] = chr($i);
+    }
+    return $arreglo;
+}
+
+
 
 
 
