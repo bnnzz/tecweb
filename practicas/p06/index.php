@@ -16,7 +16,6 @@
         }
     ?>
 
-
   <h2>Ejercicio 2.-</h2>
     <p>Crea un programa para la generación repetitiva de 3 números aleatorios hasta obtener una
     secuencia compuesta por: imparr, par, impar</p>
@@ -94,7 +93,7 @@ el valor en cada índice.</p>
     una ciudad.</p>
     <h2>Registro del Parque Vehicular</h2>
 
-<!-- Formulario para buscar vehículo por matrícula -->
+
 <h2>Consultar por Matrícula</h2>
 <form action="index.php" method="POST">
     <label for="matricula">Matrícula:</label>
@@ -102,7 +101,6 @@ el valor en cada índice.</p>
     <input type="submit" name="consulta" value="Consultar">
 </form>
 
-<!-- Formulario para mostrar todos los vehículos -->
 <h2>Mostrar Todos los Vehículos</h2>
 <form action="index.php" method="POST">
     <input type="submit" name="consultaTodos" value="Mostrar todos">
@@ -111,7 +109,6 @@ el valor en cada índice.</p>
 <?php
 require_once __DIR__ . '/src/funciones.php';
 
-// Procesar el formulario según la opción seleccionada
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['consultaTodos'])) {
         // Mostrar todos los registros

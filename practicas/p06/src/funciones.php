@@ -19,7 +19,6 @@ $iteraciones = 0;
 $numerosGenerados = 0;
 $matriz = [];
 
-// Generamos secuencias hasta obtener al menos una válida
 do {
     $fila = [];
     for ($i = 0; $i < 3; $i++) {
@@ -31,10 +30,10 @@ do {
     $matriz[] = $fila;
     $iteraciones++;
 
-    // Revisamos si la última fila generada cumple la condición (impar, par, impar)
+
 } while (!($fila[0] % 2 != 0 && $fila[1] % 2 == 0 && $fila[2] % 2 != 0));
 
-// Mostramos el número total de iteraciones y números generados
+
 echo "<h3>$numerosGenerados números obtenidos en $iteraciones iteraciones.</h3>";
 }
 
@@ -71,7 +70,7 @@ function ArregloLet() {
 }
 
 
-// Función para procesar el formulario
+
 function primerFormulario($edad, $sexo) {
     // Validar la condición de edad y sexo
     if ($sexo == 'femenino' && $edad >= 18 && $edad <= 35) {
@@ -80,7 +79,6 @@ function primerFormulario($edad, $sexo) {
         echo "<h3>Lo sentimos, su edad o sexo no cumplen con los requisitos.</h3>";
     }
 }
-
 
 
 function registro() {
@@ -269,7 +267,7 @@ function registro() {
     return $parqueVehicular;
 }
 
-// Función para mostrar el registro completo (todos los vehículos)
+// todos los vehículos
 function mostrarRegistro() {
     $parqueVehicular = registro();
     echo "<pre>";
@@ -277,7 +275,7 @@ function mostrarRegistro() {
     echo "</pre>";
 }
 
-// Función para buscar y mostrar la información de un vehículo dado su matrícula.
+// buscar y mostrar la información de un vehículo con su matrícula.
 function buscarMatricula($matricula) {
     $parqueVehicular = registro();
     if (isset($parqueVehicular[$matricula])) {
@@ -285,7 +283,7 @@ function buscarMatricula($matricula) {
         print_r($parqueVehicular[$matricula]);
         echo "</pre>";
     } else {
-        echo "<h3>No se encontró ningún vehículo con la matrícula $matricula</h3>";
+        echo "<h3>No hay ningún vehículo con la matrícula $matricula</h3>";
     }
 }
 
