@@ -54,6 +54,42 @@ el valor en cada índice.</p>
         ?>
     </table>
 
+
+    <h2>Ejercicio 5.- </h2>
+    <p>Usar las variables $edad y $sexo en una instrucción if para identificar una persona de
+      sexo “femenino”, cuya edad oscile entre los 18 y 35 años y mostrar un mensaje de
+      bienvenida apropiado.</p>
+      <h2>Formulario de Validación</h2>
+    <form action="index.php" method="POST">
+        <label for="edad">Edad: </label>
+        <input type="number" id="edad" name="edad" required><br><br>
+
+        <label for="sexo">Sexo: </label>
+        <select id="sexo" name="sexo" required>
+            <option value="femenino">Femenino</option>
+            <option value="masculino">Masculino</option>
+        </select><br><br>
+
+        <input type="submit" value="Enviar">
+    </form>
+
+
+
+    <?php
+     require_once __DIR__ . '/src/funciones.php';
+   
+     
+     if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $edad = $_POST['edad'];
+        $sexo = $_POST['sexo'];
+
+        // Llamar a la función de validación
+        primerFormulario($edad, $sexo);
+    }
+    ?>
+
+
+
     <h2>Ejemplo de POST</h2> 
     <form action="http://localhost/tecweb/practicas/p04/index.php" method="post">
         Name: <input type="text" name="name"><br>

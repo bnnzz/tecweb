@@ -71,8 +71,15 @@ function ArregloLet() {
 }
 
 
-
-
+// Función para procesar el formulario
+function primerFormulario($edad, $sexo) {
+    // Validar la condición de edad y sexo
+    if ($sexo == 'femenino' && $edad >= 18 && $edad <= 35) {
+        echo "<h3>Bienvenida, usted está en el rango de edad permitido.</h3>";
+    } else {
+        echo "<h3>Lo sentimos, su edad o sexo no cumplen con los requisitos.</h3>";
+    }
+}
 
 
 
