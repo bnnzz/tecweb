@@ -83,6 +83,211 @@ function primerFormulario($edad, $sexo) {
 
 
 
+function registro() {
+    $parqueVehicular = array(
+        "UBN6338" => array(
+            "Auto" => array(
+                "marca" => "HONDA",
+                "modelo" => "2020",
+                "tipo"  => "camioneta"
+            ),
+            "Propietario" => array(
+                "nombre"    => "Alfonzo Esparza",
+                "ciudad"    => "Puebla, Pue.",
+                "direccion" => "C.U., Jardines de San Manuel"
+            )
+        ),
+        "UBN6339" => array(
+            "Auto" => array(
+                "marca" => "MAZDA",
+                "modelo" => "2019",
+                "tipo"  => "sedan"
+            ),
+            "Propietario" => array(
+                "nombre"    => "Ma. del Consuelo Molina",
+                "ciudad"    => "Puebla, Pue.",
+                "direccion" => "97 oriente"
+            )
+        ),
+        "ABC1234" => array(
+            "Auto" => array(
+                "marca" => "TOYOTA",
+                "modelo" => "2021",
+                "tipo"  => "hachback"
+            ),
+            "Propietario" => array(
+                "nombre"    => "Carlos López",
+                "ciudad"    => "Ciudad de México",
+                "direccion" => "Av. Reforma 123"
+            )
+        ),
+        "DEF5678" => array(
+            "Auto" => array(
+                "marca" => "FORD",
+                "modelo" => "2018",
+                "tipo"  => "sedan"
+            ),
+            "Propietario" => array(
+                "nombre"    => "Ana Martínez",
+                "ciudad"    => "Monterrey",
+                "direccion" => "Calle Juárez 456"
+            )
+        ),
+        "GHI9012" => array(
+            "Auto" => array(
+                "marca" => "NISSAN",
+                "modelo" => "2020",
+                "tipo"  => "camioneta"
+            ),
+            "Propietario" => array(
+                "nombre"    => "Luis Torres",
+                "ciudad"    => "Guadalajara",
+                "direccion" => "Av. Vallarta 789"
+            )
+        ),
+        "JKL3456" => array(
+            "Auto" => array(
+                "marca" => "CHEVROLET",
+                "modelo" => "2019",
+                "tipo"  => "sedan"
+            ),
+            "Propietario" => array(
+                "nombre"    => "Sofía Ramírez",
+                "ciudad"    => "Puebla, Pue.",
+                "direccion" => "Calle 5 de Mayo 101"
+            )
+        ),
+        "MNO7890" => array(
+            "Auto" => array(
+                "marca" => "KIA",
+                "modelo" => "2022",
+                "tipo"  => "hachback"
+            ),
+            "Propietario" => array(
+                "nombre"    => "Eduardo García",
+                "ciudad"    => "Querétaro",
+                "direccion" => "Calle Hidalgo 202"
+            )
+        ),
+        "PQR2345" => array(
+            "Auto" => array(
+                "marca" => "SUBARU",
+                "modelo" => "2020",
+                "tipo"  => "sedan"
+            ),
+            "Propietario" => array(
+                "nombre"    => "Mariana Ríos",
+                "ciudad"    => "Toluca",
+                "direccion" => "Av. Reforma 303"
+            )
+        ),
+        "STU6789" => array(
+            "Auto" => array(
+                "marca" => "BMW",
+                "modelo" => "2017",
+                "tipo"  => "sedan"
+            ),
+            "Propietario" => array(
+                "nombre"    => "Diego Fernández",
+                "ciudad"    => "Cancún",
+                "direccion" => "Calle Sol 404"
+            )
+        ),
+        "VWX0123" => array(
+            "Auto" => array(
+                "marca" => "AUDI",
+                "modelo" => "2021",
+                "tipo"  => "sedan"
+            ),
+            "Propietario" => array(
+                "nombre"    => "Isabel Gómez",
+                "ciudad"    => "León",
+                "direccion" => "Calle Reforma 505"
+            )
+        ),
+        "YZA4567" => array(
+            "Auto" => array(
+                "marca" => "MERCEDES",
+                "modelo" => "2018",
+                "tipo"  => "camioneta"
+            ),
+            "Propietario" => array(
+                "nombre"    => "Ricardo Sánchez",
+                "ciudad"    => "Tijuana",
+                "direccion" => "Av. Revolución 606"
+            )
+        ),
+        "BCD8901" => array(
+            "Auto" => array(
+                "marca" => "VOLKSWAGEN",
+                "modelo" => "2019",
+                "tipo"  => "sedan"
+            ),
+            "Propietario" => array(
+                "nombre"    => "Laura Herrera",
+                "ciudad"    => "Mérida",
+                "direccion" => "Calle 60 707"
+            )
+        ),
+        "EFG2345" => array(
+            "Auto" => array(
+                "marca" => "HYUNDAI",
+                "modelo" => "2020",
+                "tipo"  => "hachback"
+            ),
+            "Propietario" => array(
+                "nombre"    => "Javier Morales",
+                "ciudad"    => "Culiacán",
+                "direccion" => "Av. del Sol 808"
+            )
+        ),
+        "HIJ6789" => array(
+            "Auto" => array(
+                "marca" => "SUZUKI",
+                "modelo" => "2017",
+                "tipo"  => "sedan"
+            ),
+            "Propietario" => array(
+                "nombre"    => "Patricia Cruz",
+                "ciudad"    => "Hermosillo",
+                "direccion" => "Calle Libertad 909"
+            )
+        ),
+        "KLM0123" => array(
+            "Auto" => array(
+                "marca" => "LEXUS",
+                "modelo" => "2021",
+                "tipo"  => "sedan"
+            ),
+            "Propietario" => array(
+                "nombre"    => "Fernando Jiménez",
+                "ciudad"    => "Puebla, Pue.",
+                "direccion" => "Calle 16 de Septiembre 1010"
+            )
+        )
+    );
+    return $parqueVehicular;
+}
+
+// Función para mostrar el registro completo (todos los vehículos)
+function mostrarRegistro() {
+    $parqueVehicular = registro();
+    echo "<pre>";
+    print_r($parqueVehicular);
+    echo "</pre>";
+}
+
+// Función para buscar y mostrar la información de un vehículo dado su matrícula.
+function buscarMatricula($matricula) {
+    $parqueVehicular = registro();
+    if (isset($parqueVehicular[$matricula])) {
+        echo "<pre>";
+        print_r($parqueVehicular[$matricula]);
+        echo "</pre>";
+    } else {
+        echo "<h3>No se encontró ningún vehículo con la matrícula $matricula</h3>";
+    }
+}
 
 
 ?>

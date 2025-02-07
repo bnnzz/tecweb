@@ -89,21 +89,40 @@ el valor en cada índice.</p>
     ?>
 
 
+<h2>Ejercicio 6.- </h2>
+    <p>Crea en código duro un arreglo asociativo que sirva para registrar el parque vehicular de
+    una ciudad.</p>
+    <h2>Registro del Parque Vehicular</h2>
 
-    <h2>Ejemplo de POST</h2> 
-    <form action="http://localhost/tecweb/practicas/p04/index.php" method="post">
-        Name: <input type="text" name="name"><br>
-        E-mail: <input type="text" name="email"><br>
-        <input type="submit">
-    </form>
-    <br>
-    <?php
-        if(isset($_POST["name"]) && isset($_POST["email"]))
-        {
-            echo $_POST["name"];
-            echo '<br>';
-            echo $_POST["email"];
-        }
-    ?> 
+<!-- Formulario para buscar vehículo por matrícula -->
+<h2>Consultar por Matrícula</h2>
+<form action="index.php" method="POST">
+    <label for="matricula">Matrícula:</label>
+    <input type="text" name="matricula" id="matricula" required>
+    <input type="submit" name="consulta" value="Consultar">
+</form>
+
+<!-- Formulario para mostrar todos los vehículos -->
+<h2>Mostrar Todos los Vehículos</h2>
+<form action="index.php" method="POST">
+    <input type="submit" name="consultaTodos" value="Mostrar todos">
+</form>
+
+<?php
+require_once __DIR__ . '/src/funciones.php';
+
+// Procesar el formulario según la opción seleccionada
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['consultaTodos'])) {
+        // Mostrar todos los registros
+        mostrarRegistro();
+    } elseif (isset($_POST['consulta'])) {
+        // Consultar por matrícula
+        $matricula = $_POST['matricula'];
+        buscarMatricula($matricula);
+    }
+}
+?>
+
 </body>
 </html>
