@@ -20,7 +20,7 @@
 
 		<p>Gracias por registrar el producto &#174;. Hemos recibido la siguiente información de tu registro:</p>
 
-		<h2>Acerca de ti:</h2>
+		<h2>Acerca del producto:</h2>
 		<ul>
 			<li><strong>Nombre:</strong> <em><?php echo $_POST['name']; ?></em></li>
 			<li><strong>E-mail:</strong> <em><?php echo $_POST['marca']; ?></em></li>
