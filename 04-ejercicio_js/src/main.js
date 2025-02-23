@@ -1,4 +1,3 @@
-
 function getDatos()
 {
     var nombre = prompt("Nombre: ", "");
@@ -12,11 +11,16 @@ function getDatos()
     div2.innerHTML = '<h3> Edad: '+edad+'</h3>';
 }
 
-
 function mostrarHolaMundo() {
-   document.write('Hola Mundo');
+    var div = document.getElementById('output');
+    console.log(div); // Esto debería mostrar el div en la consola
+    if (div) {
+        div.innerHTML = 'Hola Mundo';
+    } else {
+        console.log('El div con id "output" no se encontró.');
+    }
 }
- 
+
 
 function mostrarVariables() {
     var nombre = 'Juan';
