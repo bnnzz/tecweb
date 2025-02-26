@@ -65,23 +65,22 @@
 					echo '  </thead>';
 					echo '  <tbody>';
 
-					// Se recorren todos los registros obtenidos
-					while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
-						echo '    <tr>';
-						echo '      <th scope="row">' . htmlspecialchars($row['id']) . '</th>';
-						echo '      <td>' . htmlspecialchars($row['nombre']) . '</td>';
-						echo '      <td>' . htmlspecialchars($row['marca']) . '</td>';
-						echo '      <td>' . htmlspecialchars($row['modelo']) . '</td>';
-						echo '      <td>' . htmlspecialchars($row['precio']) . '</td>';
-						echo '      <td>' . htmlspecialchars($row['unidades']) . '</td>';
-						// Se aplica utf8_encode en el campo detalles, como en el código original
-						echo '      <td>' . utf8_encode($row['detalles']) . '</td>';
-						echo '      <td><img src="' . htmlspecialchars($row['imagen']) . '" alt="Imagen" /></td>';
-						echo '    </tr>';
-						<td><input type="button" 
-                               value="submit" 
-                               onclick="show()" /></td>
-					}
+				// Se recorren todos los registros obtenidos
+while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
+    echo '    <tr id="' . htmlspecialchars($row['id']) . '">';  // Se le asigna un id único a la fila
+    echo '      <th scope="row" class="row-data">' . htmlspecialchars($row['id']) . '</th>';
+    echo '      <td class="row-data">' . htmlspecialchars($row['nombre']) . '</td>';
+    echo '      <td class="row-data">' . htmlspecialchars($row['marca']) . '</td>';
+    echo '      <td class="row-data">' . htmlspecialchars($row['modelo']) . '</td>';
+    echo '      <td class="row-data">' . htmlspecialchars($row['precio']) . '</td>';
+    echo '      <td class="row-data">' . htmlspecialchars($row['unidades']) . '</td>';
+    echo '      <td class="row-data">' . utf8_encode($row['detalles']) . '</td>';
+    echo '      <td><img src="' . htmlspecialchars($row['imagen']) . '" alt="Imagen" /></td>';
+
+    // Aquí agregamos el botón y le pasamos el id de la fila como parámetro a la función show()
+    echo '      <td><input type="button" value="submit" onclick="show(' . htmlspecialchars($row['id']) . ')" /></td>';
+
+}
 
 					echo '  </tbody>';
 					echo '</table>';
@@ -93,5 +92,8 @@
 			$link->close();
 		
 		?>
+
+
+
 	</body>
 </html>
