@@ -7,6 +7,28 @@
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
               crossorigin="anonymous" />
+
+
+
+			  <script>
+            function show(rowId) {
+                // Se obtiene los datos de la fila en forma de arreglo
+                var data = document.getElementById(rowId).querySelectorAll(".row-data");
+
+                // Se obtienen los valores de las celdas
+                var id = data[0].innerHTML;
+                var nombre = data[1].innerHTML;
+                var marca = data[2].innerHTML;
+                var modelo = data[3].innerHTML;
+                var precio = data[4].innerHTML;
+                var unidades = data[5].innerHTML;
+                var detalles = data[6].innerHTML;
+
+                // Se muestra la información en una alerta
+                alert("ID: " + id + "\nNombre: " + nombre + "\nMarca: " + marca + "\nModelo: " + modelo + 
+                      "\nPrecio: " + precio + "\nUnidades: " + unidades + "\nDetalles: " + detalles);
+            }
+        </script>
 	</head>
 	<body>
 		<h3>Productos no eliminados</h3>
@@ -56,6 +78,9 @@
 						echo '      <td>' . utf8_encode($row['detalles']) . '</td>';
 						echo '      <td><img src="' . htmlspecialchars($row['imagen']) . '" alt="Imagen" /></td>';
 						echo '    </tr>';
+						<td><input type="button" 
+                               value="submit" 
+                               onclick="show()" /></td>
 					}
 
 					echo '  </tbody>';
