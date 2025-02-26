@@ -27,6 +27,7 @@
                 // Se muestra la información en una alerta
                 alert("ID: " + id + "\nNombre: " + nombre + "\nMarca: " + marca + "\nModelo: " + modelo + 
                       "\nPrecio: " + precio + "\nUnidades: " + unidades + "\nDetalles: " + detalles);
+					  send2form(id, nombre, marca, modelo, precio, unidades, detalles);
             }
         </script>
 	</head>
@@ -94,6 +95,68 @@ while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
 		?>
 
 
+<script>
+    function send2form(id, name, brand, model, price, units, details) {
+        var form = document.createElement("form");
+
+        // Crear y agregar el campo para el ID del producto
+        var idIn = document.createElement("input");
+        idIn.type = 'hidden';
+        idIn.name = 'id';
+        idIn.value = id;
+        form.appendChild(idIn);
+
+        // Crear y agregar el campo para el nombre del producto
+        var nameIn = document.createElement("input");
+        nameIn.type = 'hidden';
+        nameIn.name = 'nombre';
+        nameIn.value = name;
+        form.appendChild(nameIn);
+
+        // Crear y agregar el campo para la marca del producto
+        var brandIn = document.createElement("input");
+        brandIn.type = 'hidden';
+        brandIn.name = 'marca';
+        brandIn.value = brand;
+        form.appendChild(brandIn);
+
+        // Crear y agregar el campo para el modelo del producto
+        var modelIn = document.createElement("input");
+        modelIn.type = 'hidden';
+        modelIn.name = 'modelo';
+        modelIn.value = model;
+        form.appendChild(modelIn);
+
+        // Crear y agregar el campo para el precio del producto
+        var priceIn = document.createElement("input");
+        priceIn.type = 'hidden';
+        priceIn.name = 'precio';
+        priceIn.value = price;
+        form.appendChild(priceIn);
+
+        // Crear y agregar el campo para las unidades del producto
+        var unitsIn = document.createElement("input");
+        unitsIn.type = 'hidden';
+        unitsIn.name = 'unidades';
+        unitsIn.value = units;
+        form.appendChild(unitsIn);
+
+        // Crear y agregar el campo para los detalles del producto
+        var detailsIn = document.createElement("input");
+        detailsIn.type = 'hidden';
+        detailsIn.name = 'detalles';
+        detailsIn.value = details;
+        form.appendChild(detailsIn);
+
+        // Establecer el método y la acción del formulario
+        form.method = 'POST';
+        form.action = 'formulario_productos_v2.php';  
+
+        // Adjuntar el formulario al cuerpo del documento y enviarlo
+        document.body.appendChild(form);
+        form.submit();
+    }
+</script>
 
 	</body>
 </html>
