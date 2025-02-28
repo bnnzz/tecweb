@@ -23,7 +23,7 @@
     }
     ?>
 
-    <form id="formularioTenis" action="http://localhost/tecweb/practicas/p08/set_producto_v2.php" method="post" onsubmit="return validarFormulario()">
+    <form id="formularioTenis" action="update_producto.php" method="post" onsubmit="return validarFormulario()">
         <h2>Datos del producto</h2>
 
         <fieldset>

@@ -29,3 +29,10 @@ if(mysqli_query($link, $sql)){
 // Cierra la conexión
 mysqli_close($link);
 ?>
+
+<p>
+    <a href="get_producto_xhtml_v2.php">Ver productos con unidades ≤ tope</a>
+</p>
+<p>
+    <a href="get_productos_vigentes_v2.php">Ver productos vigentes</a>
+</p>
