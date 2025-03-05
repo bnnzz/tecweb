@@ -1,15 +1,12 @@
 
 $(function () {
-    console.log('jquery funcionando');
+    console.log('jquery listo');
 });
 
 
 
 
 // JSON BASE A MOSTRAR EN FORMULARIO
-
-
-
 
 var baseJSON = {
     "precio": 0.0,
