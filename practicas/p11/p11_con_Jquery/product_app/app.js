@@ -1,37 +1,32 @@
-$(function() {
 
-console.log('jQuery is ready!');
-
-});
 
 $(document).ready(function() {
     console.log('jQuery is ready!');
-
-$('#search').on('keyup', function() {
-    if($('$serch').val()){
-        let search = $('$search.php').val();
+// search key type event
+$('#search').keyup(function(e) {
+    
+    if($('#search').val()) {
+      let search = $('#search').val();
       $.ajax({
-          URL: 'product-search.php',
-          type: 'POST',
-          data: {search},
-          success: function(response) {
-              let products = JSON.parse(response);
-              let template = '';
-  
-              products.forEach(product => {
-                  template += `<li>
-                  ${product.name}
-                  </li>`
-                }); 
-                $('#container').html(template);
-  
-      }
-  
-  });
+        url: "backend/product-search.php",
+    
+        type: 'POST',
+        data: {search},
+       
+        success: function (response) {
+        
+            let tasks = JSON.parse(response);
+            let template = '';
 
+            tasks.forEach(task => {
+              template += template += `<li>${task.name}</li>`; 
+            });
+            $('#container').html(template);
+          
+        } 
+      })
     }
-  
-  }); 
+  });
 
 
 }); 
