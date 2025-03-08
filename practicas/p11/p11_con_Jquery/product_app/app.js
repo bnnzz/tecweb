@@ -4,7 +4,37 @@ console.log('jQuery is ready!');
 
 });
 
+$(document).ready(function() {
+    console.log('jQuery is ready!');
 
+$('#search').on('keyup', function() {
+    if($('$serch').val()){
+        let search = $('$search.php').val();
+      $.ajax({
+          URL: 'product-search.php',
+          type: 'POST',
+          data: {search},
+          success: function(response) {
+              let products = JSON.parse(response);
+              let template = '';
+  
+              products.forEach(product => {
+                  template += `<li>
+                  ${product.name}
+                  </li>`
+                }); 
+                $('#container').html(template);
+  
+      }
+  
+  });
+
+    }
+  
+  }); 
+
+
+}); 
 
 // JSON BASE A MOSTRAR EN FORMULARIO
 var baseJSON = {
@@ -27,6 +57,9 @@ function init() {
     // SE LISTAN TODOS LOS PRODUCTOS
     listarProductos();
 }
+
+
+
 
 // FUNCIÓN CALLBACK AL CARGAR LA PÁGINA O AL AGREGAR UN PRODUCTO
 function listarProductos() {
@@ -80,76 +113,8 @@ function listarProductos() {
     client.send();
 }
 
-// FUNCIÓN CALLBACK DE BOTÓN "Buscar"
-function buscarProducto(e) {
-    /**
-     * Revisar la siguiente información para entender porqué usar event.preventDefault();
-     * http://qbit.com.mx/blog/2013/01/07/la-diferencia-entre-return-false-preventdefault-y-stoppropagation-en-jquery/#:~:text=PreventDefault()%20se%20utiliza%20para,escuche%20a%20trav%C3%A9s%20del%20DOM
-     * https://www.geeksforgeeks.org/when-to-use-preventdefault-vs-return-false-in-javascript/
-     */
-    e.preventDefault();
 
-    // SE OBTIENE EL ID A BUSCAR
-    var search = document.getElementById('search').value;
 
-    // SE CREA EL OBJETO DE CONEXIÓN ASÍNCRONA AL SERVIDOR
-    var client = getXMLHttpRequest();
-    client.open('GET', './backend/product-search.php?search='+search, true);
-    client.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    client.onreadystatechange = function () {
-        // SE VERIFICA SI LA RESPUESTA ESTÁ LISTA Y FUE SATISFACTORIA
-        if (client.readyState == 4 && client.status == 200) {
-            //console.log('[CLIENTE]\n'+client.responseText);
-            
-            // SE OBTIENE EL OBJETO DE DATOS A PARTIR DE UN STRING JSON
-            let productos = JSON.parse(client.responseText);    // similar a eval('('+client.responseText+')');
-            
-            // SE VERIFICA SI EL OBJETO JSON TIENE DATOS
-            if(Object.keys(productos).length > 0) {
-                // SE CREA UNA PLANTILLA PARA CREAR LAS FILAS A INSERTAR EN EL DOCUMENTO HTML
-                let template = '';
-                let template_bar = '';
-
-                productos.forEach(producto => {
-                    // SE COMPRUEBA QUE SE OBTIENE UN OBJETO POR ITERACIÓN
-                    //console.log(producto);
-
-                    // SE CREA UNA LISTA HTML CON LA DESCRIPCIÓN DEL PRODUCTO
-                    let descripcion = '';
-                    descripcion += '<li>precio: '+producto.precio+'</li>';
-                    descripcion += '<li>unidades: '+producto.unidades+'</li>';
-                    descripcion += '<li>modelo: '+producto.modelo+'</li>';
-                    descripcion += '<li>marca: '+producto.marca+'</li>';
-                    descripcion += '<li>detalles: '+producto.detalles+'</li>';
-                
-                    template += `
-                        <tr productId="${producto.id}">
-                            <td>${producto.id}</td>
-                            <td>${producto.nombre}</td>
-                            <td><ul>${descripcion}</ul></td>
-                            <td>
-                                <button class="product-delete btn btn-danger" onclick="eliminarProducto()">
-                                    Eliminar
-                                </button>
-                            </td>
-                        </tr>
-                    `;
-
-                    template_bar += `
-                        <li>${producto.nombre}</il>
-                    `;
-                });
-                // SE HACE VISIBLE LA BARRA DE ESTADO
-                document.getElementById("product-result").className = "card my-4 d-block";
-                // SE INSERTA LA PLANTILLA PARA LA BARRA DE ESTADO
-                document.getElementById("container").innerHTML = template_bar;  
-                // SE INSERTA LA PLANTILLA EN EL ELEMENTO CON ID "productos"
-                document.getElementById("products").innerHTML = template;
-            }
-        }
-    };
-    client.send();
-}
 
 // FUNCIÓN CALLBACK DE BOTÓN "Agregar Producto"
 function agregarProducto(e) {
