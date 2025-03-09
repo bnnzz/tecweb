@@ -25,6 +25,7 @@ listarProductos();
     }
 
     $('#search').keyup(function (e) {
+     
         if ($('#search').val()) {
 
             let search = $('#search').val();
@@ -64,6 +65,42 @@ listarProductos();
 
 
     });
+
+
+
+
+    
+    // Agregar evento submit al formulario de búsqueda
+    $('form').submit(function(e) {
+        e.preventDefault();
+        let search = $('#search').val();
+        console.log('Valor de búsqueda:', search);
+
+        $.ajax({
+            url: 'backend/product-search.php',
+            type: 'GET',
+            data: { search: search },
+            success: function(response) {
+                let products = JSON.parse(response);
+                let template = '';
+
+                products.forEach(product => {
+                    console.log('Producto:', product);
+                    template += `
+                        <li>
+                            ${product.nombre}
+                        </li>
+                    `;
+                });
+
+                $('#container').html(template);
+                console.log('Contenido del contenedor actualizado');
+                $('#product-result').removeClass('d-none').addClass('d-block');
+            },
+        });
+    });
+
+
 
 
 
@@ -133,10 +170,14 @@ listarProductos();
                     </ul>
                 `;
                     template += `
-                    <tr>
+                    <tr  productid= "${product.id}">
                         <td>${product.id}</td>
                         <td>${product.nombre}</td>
                         <td>${description}</td>
+                        <td>
+                        <button class="product-delete btn btn-danger">
+                        Eliminar</button>
+                        </td>
                     </tr>
                 `;
                 });
@@ -150,7 +191,17 @@ listarProductos();
 
     }
 
+$(document).on('click', '.product-delete', function () {
+if (confirm('¿Estás seguro de querer eliminar este producto?')) {
+    let element=$(this)[0].parentElement.parentElement;
+let id= $(element).attr('productid');  
+$.get('backend/product-delete.php', {id}, function (response) {
+listarProductos();
 
+});
+}
+
+});
 
 
 
