@@ -51,7 +51,8 @@ listarProductos();
 
                     $('#container').html(template);
                     console.log('Contenido del contenedor actualizado');
-                    $('#product-result').show();
+                    $('#product-result').removeClass('d-none').addClass('d-block');
+                    //$('#product-result').show();
 
                 },
 
@@ -84,7 +85,8 @@ listarProductos();
             contentType: 'application/json',
             data: productoJsonString,
             success: function (response) {
-                console.log('Datos enviados:', response);
+                listarProductos();  
+                //console.log('Datos enviados:', response);
                 let respuesta = JSON.parse(response);
                 let template_bar = '';
                 template_bar += `
@@ -96,6 +98,13 @@ listarProductos();
                 $('#product-result').removeClass('d-none').addClass('d-block');
                 // SE INSERTA LA PLANTILLA PARA LA BARRA DE ESTADO
                 $('#container').html(template_bar);
+
+                
+                // Restablecer el formulario
+                $('#product-form').trigger('reset');
+                // Volver a establecer el JSON base en el campo de descripción
+                document.getElementById("description").value = JSON.stringify(baseJSON, null, 2);
+       
 
                 // SE LISTAN TODOS LOS PRODUCTOS
                 //listarProductos();
