@@ -24,7 +24,9 @@ $(document).ready(function() {
     }
 
     $('#search').keyup(function(e) {
-        let search = $('#search').val();
+  if($('#search').val()) {
+
+      let search = $('#search').val();
         console.log('Valor de búsqueda:', search);
 
         $.ajax({
@@ -32,13 +34,38 @@ $(document).ready(function() {
             type: 'GET',
             data: { search: search },
             success: function(response) {
-                console.log('Respuesta del servidor:', response);
-                // Aquí puedes agregar más lógica para manejar la respuesta
+            
+                let products = JSON.parse(response);
+                
+                let template = '';
+
+                products.forEach(product => {
+                    console.log('Producto:', product);
+                    template += `
+                        <li>
+                            ${product.nombre}
+                        </li>
+                    `;
+                });
+
+                $('#container').html(template);
+                console.log('Contenido del contenedor actualizado');
+
+                // Mostrar el contenedor de resultados si hay productos
+                if (products.length > 0) {
+                    $('#product-result').removeClass('d-none');
+                } else {
+                    $('#product-result').addClass('d-none');
+                }
             },
-            error: function(xhr, status, error) {
-                console.error('Error en la solicitud AJAX:', error);
-            }
+        
         });
+
+
+  }
+
+
+
     });
 
     // Inicializar la función init
