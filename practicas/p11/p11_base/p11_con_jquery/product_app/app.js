@@ -1,5 +1,6 @@
-$(document).ready(function() {
+$(document).ready(function () {
     console.log('JQuery funciona');
+listarProductos();
 
     // JSON BASE A MOSTRAR EN FORMULARIO
     var baseJSON = {
@@ -23,41 +24,41 @@ $(document).ready(function() {
         //listarProductos();
     }
 
-    $('#search').keyup(function(e) {
-  if($('#search').val()) {
+    $('#search').keyup(function (e) {
+        if ($('#search').val()) {
 
-      let search = $('#search').val();
-        console.log('Valor de búsqueda:', search);
+            let search = $('#search').val();
+            console.log('Valor de búsqueda:', search);
 
-        $.ajax({
-            url: 'backend/product-search.php',
-            type: 'GET',
-            data: { search: search },
-            success: function(response) {
-            
-                let products = JSON.parse(response);
-                
-                let template = '';
+            $.ajax({
+                url: 'backend/product-search.php',
+                type: 'GET',
+                data: { search: search },
+                success: function (response) {
 
-                products.forEach(product => {
-                    console.log('Producto:', product);
-                    template += `
+                    let products = JSON.parse(response);
+
+                    let template = '';
+
+                    products.forEach(product => {
+                        console.log('Producto:', product);
+                        template += `
                         <li>
                             ${product.nombre}
                         </li>
                     `;
-                });
+                    });
 
-                $('#container').html(template);
-                console.log('Contenido del contenedor actualizado');
-                $('#product-result').show();
+                    $('#container').html(template);
+                    console.log('Contenido del contenedor actualizado');
+                    $('#product-result').show();
 
-            },
-        
-        });
+                },
+
+            });
 
 
-  }
+        }
 
 
 
@@ -65,7 +66,7 @@ $(document).ready(function() {
 
 
 
-    $('#product-form').submit(function(e) {
+    $('#product-form').submit(function (e) {
         e.preventDefault();
 
         // SE OBTIENE DESDE EL FORMULARIO EL JSON A ENVIAR
@@ -82,7 +83,7 @@ $(document).ready(function() {
             type: 'POST',
             contentType: 'application/json',
             data: productoJsonString,
-            success: function(response) {
+            success: function (response) {
                 console.log('Datos enviados:', response);
                 let respuesta = JSON.parse(response);
                 let template_bar = '';
@@ -103,14 +104,17 @@ $(document).ready(function() {
     });
 
 
-    $.ajax({
-        url: 'backend/product-list.php',
-        type: 'GET',
-        success: function(response) {
-            let products = JSON.parse(response);
-            let template = '';
-            products.forEach(product => {
-                let description = `
+
+    function listarProductos() {
+
+        $.ajax({
+            url: 'backend/product-list.php',
+            type: 'GET',
+            success: function (response) {
+                let products = JSON.parse(response);
+                let template = '';
+                products.forEach(product => {
+                    let description = `
                     <ul>
                         <li>precio: ${product.precio}</li>
                         <li>unidades: ${product.unidades}</li>
@@ -119,17 +123,24 @@ $(document).ready(function() {
                         <li>detalles: ${product.detalles}</li>
                     </ul>
                 `;
-                template += `
+                    template += `
                     <tr>
                         <td>${product.id}</td>
                         <td>${product.nombre}</td>
                         <td>${description}</td>
                     </tr>
                 `;
-            });
-            $('#products').html(template);
-        },
-    });
+                });
+                $('#products').html(template);
+            },
+        });
+
+
+
+
+
+    }
+
 
 
 
