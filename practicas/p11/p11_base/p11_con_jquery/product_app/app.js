@@ -1,4 +1,6 @@
 $(document).ready(function () {
+   
+   let edit=false;
     console.log('JQuery funciona');
 listarProductos();
 
@@ -116,8 +118,14 @@ listarProductos();
         // SE OBTIENE EL STRING DEL JSON FINAL
         productoJsonString = JSON.stringify(finalJSON, null, 2);
 
+  // Comprobación para determinar si es una adición o una edición
+  const url = edit === false ? 'backend/product-add.php' : 'backend/product-edit.php';
+  console.log(finalJSON, url);
+
+
+
         $.ajax({
-            url: 'backend/product-add.php',
+            url:url,
             type: 'POST',
             contentType: 'application/json',
             data: productoJsonString,
@@ -125,6 +133,7 @@ listarProductos();
                 listarProductos();  
                 //console.log('Datos enviados:', response);
                 let respuesta = JSON.parse(response);
+                
                 let template_bar = '';
                 template_bar += `
                     <li style="list-style: none;">status: ${respuesta.status}</li>
@@ -135,6 +144,9 @@ listarProductos();
                 $('#product-result').removeClass('d-none').addClass('d-block');
                 // SE INSERTA LA PLANTILLA PARA LA BARRA DE ESTADO
                 $('#container').html(template_bar);
+
+        // Mostrar mensaje de éxito
+        $('#success-message').html('<div class="alert alert-success">Producto agregado exitosamente</div>');
 
                 
                 // Restablecer el formulario
@@ -157,6 +169,7 @@ listarProductos();
             url: 'backend/product-list.php',
             type: 'GET',
             success: function (response) {
+                
                 let products = JSON.parse(response);
                 let template = '';
                 products.forEach(product => {
@@ -172,7 +185,10 @@ listarProductos();
                     template += `
                     <tr  productid= "${product.id}">
                         <td>${product.id}</td>
-                        <td>${product.nombre}</td>
+                        <td>
+                        <a href="#" class="product-item" >${product.nombre}  </a>
+                        
+                        </td>
                         <td>${description}</td>
                         <td>
                         <button class="product-delete btn btn-danger">
@@ -205,6 +221,24 @@ listarProductos();
 
 
 
+$(document).on('click', '.product-item', function () {
+    let element = $(this)[0].parentElement.parentElement;
+    let id = $(element).attr('productid');   
+
+    $.get('backend/product-single.php', { id }, function (response) {
+        console.log(response); // Verifica qué devuelve el servidor
+
+        let product = (typeof response === 'string') ? JSON.parse(response) : response;
+
+        // Verifica si el producto tiene datos antes de mostrarlo
+        if (product) {
+            $('#name').val(product.nombre); // Agrega el nombre al campo de texto
+            $('#description').val(JSON.stringify(product, null, 2)); // Agrega el JSON formateado
+            $('#productId').val(id); // Guarda el ID para futuras actualizaciones
+            edit = true; // Activa la bandera de edición    
+        }
+    });
+});
 
 
 
