@@ -300,10 +300,10 @@ $(document).ready(function(){
     $('#name, #marca, #modelo, #precio, #detalles, #unidades').on('blur', function() {
         $('#product-result').hide();
     });
-    
-    
 
 
+
+    
 
 
 });
