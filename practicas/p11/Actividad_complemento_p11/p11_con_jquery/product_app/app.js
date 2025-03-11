@@ -169,6 +169,10 @@ $(document).ready(function(){
         });
     });
 
+
+
+    
+
     function validarFormulario() {
         // Validar nombre
         var nombre = document.getElementById("name").value;
@@ -221,4 +225,7 @@ $(document).ready(function(){
 
         return true;
     }
+
+
+    
 });
