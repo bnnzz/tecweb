@@ -102,6 +102,9 @@ $(document).ready(function(){
             return;
         }
 
+
+        
+
         // Se arma el objeto JSON a enviar, obteniendo los datos directamente de los campos
         let postData = {
             nombre: $('#name').val(),
@@ -226,6 +229,81 @@ $(document).ready(function(){
         return true;
     }
 
-
+    function actualizarEstado(mensaje, esValido) {
+        let template_bar = `<li style="list-style: none; color: ${esValido ? 'blue' : 'red'};">${mensaje}</li>`;
+        $('#product-result').show();
+        $('#container').html(template_bar);
+    }
     
+    // Validaciones en tiempo real
+    $('#name, #marca, #modelo, #precio, #detalles, #unidades').on('input', function() {
+        let id = $(this).attr('id');
+        let valor = $(this).val();
+        let mensaje = '';
+        let esValido = true;
+    
+        switch(id) {
+            case 'name':
+                if (valor === '' || valor.length > 100) {
+                    mensaje = 'El nombre es obligatorio y debe tener máximo 100 caracteres.';
+                    esValido = false;
+                } else {
+                    mensaje = 'Nombre válido.';
+                }
+                break;
+            case 'marca':
+                if (valor === '') {
+                    mensaje = 'Seleccione una marca.';
+                    esValido = false;
+                } else {
+                    mensaje = 'Marca válida.';
+                }
+                break;
+            case 'modelo':
+                if (valor === '' || valor.length > 25 || !/^[a-zA-Z0-9]*$/.test(valor)) {
+                    mensaje = 'El modelo debe ser alfanumérico y tener máximo 25 caracteres.';
+                    esValido = false;
+                } else {
+                    mensaje = 'Modelo válido.';
+                }
+                break;
+            case 'precio':
+                if (isNaN(parseFloat(valor)) || parseFloat(valor) <= 99.99) {
+                    mensaje = 'El precio debe ser mayor a 99.99.';
+                    esValido = false;
+                } else {
+                    mensaje = 'Precio válido.';
+                }
+                break;
+            case 'detalles':
+                if (valor.length > 250) {
+                    mensaje = 'Los detalles deben tener máximo 250 caracteres.';
+                    esValido = false;
+                } else {
+                    mensaje = 'Detalles válidos.';
+                }
+                break;
+            case 'unidades':
+                if (isNaN(parseInt(valor)) || parseInt(valor) < 0) {
+                    mensaje = 'Las unidades deben ser 0 o más.';
+                    esValido = false;
+                } else {
+                    mensaje = 'Unidades válidas.';
+                }
+                break;
+        }
+    
+        actualizarEstado(mensaje, esValido);
+    });
+    
+    // Ocultar barra de estado cuando el usuario deja de interactuar
+    $('#name, #marca, #modelo, #precio, #detalles, #unidades').on('blur', function() {
+        $('#product-result').hide();
+    });
+    
+    
+
+
+
+
 });
