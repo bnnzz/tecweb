@@ -153,6 +153,8 @@ listarProductos();
                 $('#product-form').trigger('reset');
                 // Volver a establecer el JSON base en el campo de descripción
                 document.getElementById("description").value = JSON.stringify(baseJSON, null, 2);
+
+                $('button.btn-primary').text("Agregar Producto");
        
 
                 // SE LISTAN TODOS LOS PRODUCTOS
@@ -235,7 +237,8 @@ $(document).on('click', '.product-item', function () {
             $('#name').val(product.nombre); // Agrega el nombre al campo de texto
             $('#description').val(JSON.stringify(product, null, 2)); // Agrega el JSON formateado
             $('#productId').val(id); // Guarda el ID para futuras actualizaciones
-            edit = true; // Activa la bandera de edición    
+            edit = true; // Activa la bandera de edición   
+            $('button.btn-primary').text("Modificar Producto"); 
         }
     });
 });
