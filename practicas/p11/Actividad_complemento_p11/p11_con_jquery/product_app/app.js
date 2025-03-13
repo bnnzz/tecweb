@@ -235,20 +235,42 @@ $(document).ready(function(){
         $('#container').html(template_bar);
     }
     
-    // Validaciones en tiempo real
-    $('#name, #marca, #modelo, #precio, #detalles, #unidades').on('input', function() {
+    $('#name, #marca, #modelo, #precio, #detalles, #unidades').on('input', function () {
         let id = $(this).attr('id');
         let valor = $(this).val();
         let mensaje = '';
         let esValido = true;
     
-        switch(id) {
+        switch (id) {
             case 'name':
                 if (valor === '' || valor.length > 100) {
                     mensaje = 'El nombre es obligatorio y debe tener máximo 100 caracteres.';
                     esValido = false;
                 } else {
-                    mensaje = 'Nombre válido.';
+                    // Validación asíncrona para el nombre
+                    $.ajax({
+                        url: './backend/product-check.php',
+                        method: 'POST',
+                        data: { nombre: valor },
+                        dataType: 'json',
+                        success: function (data) {
+                            if (data.existe) {
+                                mensaje = 'El nombre del producto ya existe en la base de datos.';
+                                esValido = false;
+                            } else {
+                                mensaje = 'Nombre válido(sin coincidencias en la BD).';
+                                esValido = true;
+                            }
+                            actualizarEstado(mensaje, esValido);  // Actualiza el estado con el mensaje
+                        },
+                        error: function (xhr, status, error) {
+                            console.error('Error al verificar el nombre:', error);
+                            mensaje = 'Hubo un error al verificar el nombre.';
+                            esValido = false;
+                            actualizarEstado(mensaje, esValido);  // Actualiza el estado con el mensaje de error
+                        }
+                    });
+                    return;  // Detener el flujo aquí para no mostrar un mensaje de validación predeterminado mientras se espera la respuesta
                 }
                 break;
             case 'marca':
@@ -293,62 +315,17 @@ $(document).ready(function(){
                 break;
         }
     
-        actualizarEstado(mensaje, esValido);
+        // Actualizar estado para los casos no asíncronos
+        if (id !== 'name') {
+            actualizarEstado(mensaje, esValido);
+        }
     });
     
     // Ocultar barra de estado cuando el usuario deja de interactuar
-    $('#name, #marca, #modelo, #precio, #detalles, #unidades').on('blur', function() {
+    $('#name, #marca, #modelo, #precio, #detalles, #unidades').on('blur', function () {
         $('#product-result').hide();
     });
-
-
-// Obtener el campo de nombre
-const nombreInput = document.getElementById("name");
-const mensajeElemento = document.getElementById("mensaje"); // Asegúrate de tener un elemento para el mensaje
-
-// Función para validar el nombre al teclear
-nombreInput.addEventListener("input", function () {
-    const nombre = nombreInput.value.trim();
-    let mensaje = '';
-    let esValido = true;
-
-    // Validación local del nombre
-    if (nombre === '' || nombre.length > 100) {
-        mensaje = 'El nombre es obligatorio y debe tener máximo 100 caracteres.';
-        esValido = false;
-    } else {
-        // Realizar la validación asíncrona con AJAX si el nombre es válido
-        const formData = new FormData();
-        formData.append('nombre', nombre);
-
-        fetch('./backend/product-check.php', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.existe) {
-                mensaje = 'El nombre del producto ya existe en la base de datos.';
-                esValido = false;
-            } else {
-                mensaje = 'Nombre válido.';
-                esValido = true;
-            }
-            mensajeElemento.textContent = mensaje;
-            // Aquí puedes hacer más cosas como deshabilitar el botón de envío si no es válido
-        })
-        .catch(error => {
-            console.error('Error al verificar el nombre:', error);
-            mensaje = 'Hubo un error al verificar el nombre.';
-            esValido = false;
-            mensajeElemento.textContent = mensaje;
-        });
-    }
-
-    // Mostrar el mensaje de validación
-    mensajeElemento.textContent = mensaje;
-});
-
+    
     
 
 
