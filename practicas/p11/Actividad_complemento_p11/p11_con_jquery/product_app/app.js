@@ -302,6 +302,52 @@ $(document).ready(function(){
     });
 
 
+// Obtener el campo de nombre
+const nombreInput = document.getElementById("name");
+const mensajeElemento = document.getElementById("mensaje"); // Asegúrate de tener un elemento para el mensaje
+
+// Función para validar el nombre al teclear
+nombreInput.addEventListener("input", function () {
+    const nombre = nombreInput.value.trim();
+    let mensaje = '';
+    let esValido = true;
+
+    // Validación local del nombre
+    if (nombre === '' || nombre.length > 100) {
+        mensaje = 'El nombre es obligatorio y debe tener máximo 100 caracteres.';
+        esValido = false;
+    } else {
+        // Realizar la validación asíncrona con AJAX si el nombre es válido
+        const formData = new FormData();
+        formData.append('nombre', nombre);
+
+        fetch('./backend/product-check.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.existe) {
+                mensaje = 'El nombre del producto ya existe en la base de datos.';
+                esValido = false;
+            } else {
+                mensaje = 'Nombre válido.';
+                esValido = true;
+            }
+            mensajeElemento.textContent = mensaje;
+            // Aquí puedes hacer más cosas como deshabilitar el botón de envío si no es válido
+        })
+        .catch(error => {
+            console.error('Error al verificar el nombre:', error);
+            mensaje = 'Hubo un error al verificar el nombre.';
+            esValido = false;
+            mensajeElemento.textContent = mensaje;
+        });
+    }
+
+    // Mostrar el mensaje de validación
+    mensajeElemento.textContent = mensaje;
+});
 
     
 
