@@ -30,4 +30,17 @@ if (isset($_POST['nombre'])) {
 // SE HACE LA CONVERSIÓN DE ARRAY A JSON
 echo json_encode($data);
 */
+
+use TECWEB\MyApi\Products as Products;
+require_once __DIR__ . '/myapi/Products.php';
+
+// Proporcionar los tres argumentos requeridos por el constructor en el orden correcto
+$prodObj = new Products('root', '1w2q', 'marketzone');
+
+// Llamar al método check con el nombre enviado por POST
+$prodObj->check($_POST['nombre']);
+
+// Imprimir la respuesta en formato JSON
+echo $prodObj->getData();
+
 ?>
