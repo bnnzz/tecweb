@@ -1,14 +1,21 @@
 <?php
-   /*  $conexion = @mysqli_connect(
-        'localhost',
-        'root',
-        '1w2q',
-        'marketzone'
-    );
+namespace TECWEB\MyApi;
+abstract class DataBase {
+    protected $conexion; // Cambiado a protected según UML
 
-  
-    if(!$conexion) {
-        die('¡Base de datos NO conextada!');
+    public function __construct($user, $pass, $db) {
+        $this->conexion = @mysqli_connect(
+            'localhost',
+             $user, 
+             $pass,
+              $db
+            );
+        
+      
+        if (!$this->conexion) {
+            die('¡Base de datos NO conectada! Error: ' );
+        }
     }
-    */
+}
+
 ?>
