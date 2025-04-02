@@ -6,9 +6,10 @@ require_once __DIR__ . '/Database.php';
 class Products extends DataBase {
     public $data = NULL;
     
+    
     public function __construct($db = 'marketzone', $user = 'root', $pass = '1w2q') {
         $this->data = array();
-        parent::__construct($db, $user, $pass);
+        parent::__construct($user, $pass, $db); // Cambiar el orden aquí
     }
     
     public function list() {

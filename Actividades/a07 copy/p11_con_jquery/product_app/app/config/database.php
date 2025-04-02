@@ -3,7 +3,7 @@ namespace TECWEB\MyApi;
 abstract class DataBase {
     protected $conexion; // Cambiado a protected según UML
 
-    public function __construct($db, $user, $pass) {
+    public function __construct($user, $pass, $db) {
         $this->conexion = @mysqli_connect(
             'localhost',
              $user, 
