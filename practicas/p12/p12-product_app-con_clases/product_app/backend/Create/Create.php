@@ -4,7 +4,6 @@ namespace TECWEB\MYAPI\Create;
 
 use TECWEB\MYAPI\DataBase\DataBase;
 
-
 class Products extends DataBase {
     private $data;
 
@@ -40,8 +39,6 @@ class Products extends DataBase {
             $this->conexion->close();
         }
     }
-
-
 
 
 ?>
