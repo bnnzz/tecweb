@@ -1,0 +1,15 @@
+{
+    "name": "ben31/tecweb",
+    "autoload": {
+    "psr-4": {
+        "TECWEB\\MYAPI\\": "backend/"
+    }
+},
+    "authors": [
+        {
+            "name": "bnnzz",
+            "email": "ben31_rc@hotmail.com"
+        }
+    ],
+    "require": {}
+}

@@ -1,7 +1,8 @@
 <?php
 namespace TECWEB\MYAPI\Delete;
 
-use TECWEB\MYAPI\DataBase\DataBase;
+use TECWEB\MYAPI\Database\DataBase; 
+
 
 
 class Delete extends DataBase
@@ -11,7 +12,6 @@ class Delete extends DataBase
         $this->data = array();
         parent::__construct($db, $user, $pass);
     }
-
 
 public function delete($id) {
     // SE CREA EL ARREGLO QUE SE VA A DEVOLVER EN FORMA DE JSON
@@ -30,9 +30,7 @@ public function delete($id) {
             $this->data['message'] = "ERROR: No se ejecuto $sql. " . mysqli_error($this->conexion);
         }
         $this->conexion->close();
-    } 
+    }
 }
-
-
-
+}
 ?>

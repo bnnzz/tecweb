@@ -1,13 +1,13 @@
 <?php
-
 namespace TECWEB\MYAPI\Create;
 
-use TECWEB\MYAPI\DataBase\DataBase;
+use TECWEB\MYAPI\Database\DataBase;
 
-class Products extends DataBase {
-    private $data;
 
-    public function __construct($db, $user='root', $pass='1w2q') {
+
+class Create extends DataBase{
+    public function __construct($db, $user='root', $pass='1w2q')
+    {
         $this->data = array();
         parent::__construct($db, $user, $pass);
     }
@@ -40,12 +40,5 @@ class Products extends DataBase {
         }
     }
 
-    
-    public function getData() {
-        // SE HACE LA CONVERSIÓN DE ARRAY A JSON
-        return json_encode($this->data, JSON_PRETTY_PRINT);
-    }
 }
-
-
 ?>

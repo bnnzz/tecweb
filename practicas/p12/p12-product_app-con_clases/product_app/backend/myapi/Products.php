@@ -1,8 +1,10 @@
 <?php
+/*
 namespace TECWEB\MYAPI;
 
 use TECWEB\MYAPI\DataBase;
 require_once __DIR__ . '/DataBase.php';
+**/
 /*
 class Products extends DataBase {
     private $data;
@@ -61,7 +63,7 @@ class Products extends DataBase {
         } 
     }
         **/
-
+/*
     public function edit($jsonOBJ) {
         // SE CREA EL ARREGLO QUE SE VA A DEVOLVER EN FORMA DE JSON
         $this->data = array(
@@ -84,7 +86,8 @@ class Products extends DataBase {
             $this->conexion->close();
         }
     }
-
+        **/
+/*
     public function list() {
         // SE REALIZA LA QUERY DE BÚSQUEDA Y AL MISMO TIEMPO SE VALIDA SI HUBO RESULTADOS
         if ( $result = $this->conexion->query("SELECT * FROM productos WHERE eliminado = 0") ) {
@@ -105,7 +108,8 @@ class Products extends DataBase {
         }
         $this->conexion->close();
     }
-
+        **/
+/*
     public function search($search) {
         // SE VERIFICA HABER RECIBIDO EL ID
         if( isset($search) ) {
@@ -131,6 +135,8 @@ class Products extends DataBase {
         }
     }
 
+    **/
+/*
     public function single($id) {
         if( isset($id) ) {
             // SE REALIZA LA QUERY DE BÚSQUEDA Y AL MISMO TIEMPO SE VALIDA SI HUBO RESULTADOS
@@ -151,6 +157,9 @@ class Products extends DataBase {
             $this->conexion->close();
         }
     }
+
+
+    **/
 /*
     public function getData() {
         // SE HACE LA CONVERSIÓN DE ARRAY A JSON
