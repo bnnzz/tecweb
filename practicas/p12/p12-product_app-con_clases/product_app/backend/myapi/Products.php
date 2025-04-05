@@ -3,7 +3,7 @@ namespace TECWEB\MYAPI;
 
 use TECWEB\MYAPI\DataBase;
 require_once __DIR__ . '/DataBase.php';
-
+/*
 class Products extends DataBase {
     private $data;
 
@@ -39,7 +39,8 @@ class Products extends DataBase {
             $this->conexion->close();
         }
     }
-
+**/
+/*
     public function delete($id) {
         // SE CREA EL ARREGLO QUE SE VA A DEVOLVER EN FORMA DE JSON
         $this->data = array(
@@ -59,6 +60,7 @@ class Products extends DataBase {
             $this->conexion->close();
         } 
     }
+        **/
 
     public function edit($jsonOBJ) {
         // SE CREA EL ARREGLO QUE SE VA A DEVOLVER EN FORMA DE JSON
@@ -149,12 +151,14 @@ class Products extends DataBase {
             $this->conexion->close();
         }
     }
-
+/*
     public function getData() {
         // SE HACE LA CONVERSIÓN DE ARRAY A JSON
         return json_encode($this->data, JSON_PRETTY_PRINT);
     }
 }
+
+**/
 
 //$productos = new Productos();
 ?>

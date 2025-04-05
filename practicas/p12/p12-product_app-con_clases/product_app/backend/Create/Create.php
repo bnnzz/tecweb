@@ -40,5 +40,12 @@ class Products extends DataBase {
         }
     }
 
+    
+    public function getData() {
+        // SE HACE LA CONVERSIÓN DE ARRAY A JSON
+        return json_encode($this->data, JSON_PRETTY_PRINT);
+    }
+}
+
 
 ?>
