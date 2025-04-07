@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalogoVOD>
+    <cuenta>
+        <correo>ben@31.com</correo>
+        <perfiles>
+            <perfil>
+                <usuario>benito</usuario>
+                <idioma>español</idioma>
+            </perfil>
+            <perfil>
+                <usuario>juarez</usuario>
+                <idioma>español</idioma>
+            </perfil>
+        </perfiles>
+    </cuenta>
+        
+    <contenido>
+        <peliculas>
+            <genero>
+                <nombre>Acción</nombre>
+                <titulo>
+                    <nombre>Misión Imposible</nombre>
+                    <duración>148</duración>
+                </titulo>
+                <titulo>
+                    <nombre>John Wick</nombre>
+                    <duración>121</duración>
+                </titulo>
+                <titulo>
+                    <nombre>Mad Max</nombre>
+                    <duración>120</duración>
+                </titulo>
+                <titulo>
+                    <nombre>deadpool</nombre>
+                    <duración>132</duración>
+                </titulo>
+            </genero>
+            <genero>
+                <nombre>Comedia</nombre>
+                <titulo>
+                    <nombre>Supercool</nombre>
+                    <duración>112</duración>
+                </titulo>
+                <titulo>
+                    <nombre>que paso ayer</nombre>
+                    <duración>98</duración>
+                </titulo>
+                <titulo>
+                    <nombre>Scary Movie</nombre>
+                    <duración>88</duración>
+                </titulo>
+                <titulo>
+                    <nombre>son como niños</nombre>
+                    <duración>99</duración>
+                </titulo>
+            </genero>
+        </peliculas>
+        
+        <programas>
+            <genero>
+                <nombre>Drama</nombre>
+                <titulo>
+                    <nombre>Breaking Bad</nombre>
+                    <duración>45</duración>
+                </titulo>
+                <titulo>
+                    <nombre>dr.house</nombre>
+                    <duración>60</duración>
+                </titulo>
+                <titulo>
+                    <nombre>malcom</nombre>
+                    <duración>50</duración>
+                </titulo>
+                <titulo>
+                    <nombre>Mad Men</nombre>
+                    <duración>47</duración>
+                </titulo>
+            </genero>
+            <genero>
+                <nombre>Ciencia Ficción</nombre>
+                <titulo>
+                    <nombre>Stranger Things</nombre>
+                    <duración>50</duración>
+                </titulo>
+                <titulo>
+                    <nombre>the 100</nombre>
+                    <duración>60</duración>
+                </titulo>
+                <titulo>
+                    <nombre>The Mandalorian</nombre>
+                    <duración>38</duración>
+                </titulo>
+                <titulo>
+                    <nombre>the last of us</nombre>
+                    <duración>58</duración>
+                </titulo>
+            </genero>
+        </programas>
+    </contenido>
+</catalogoVOD>

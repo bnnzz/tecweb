@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalogoVOD>
+    <cuenta correo="ben@31.com">
+        <perfiles>
+            <perfil usuario="benito" idioma="español" />
+            <perfil usuario="juarez" idioma="español" />
+        </perfiles>
+    </cuenta>
+        
+    <contenido>
+        <peliculas>
+            <genero nombre="Acción">
+                <titulo nombre="Misión Imposible" duracion="148" />
+                <titulo nombre="John Wick" duracion="121" />
+                <titulo nombre="Mad Max" duracion="120" />
+                <titulo nombre="Deadpool" duracion="132" />
+            </genero>
+            <genero nombre="Comedia">
+                <titulo nombre="Supercool" duracion="112" />
+                <titulo nombre="Que pasó ayer" duracion="98" />
+                <titulo nombre="Scary Movie" duracion="88" />
+                <titulo nombre="Son como niños" duracion="99" />
+            </genero>
+        </peliculas>
+        
+        <programas>
+            <genero nombre="Drama">
+                <titulo nombre="Breaking Bad" duracion="45" />
+                <titulo nombre="Dr. House" duracion="60" />
+                <titulo nombre="Malcom" duracion="50" />
+                <titulo nombre="Mad Men" duracion="47" />
+            </genero>
+            <genero nombre="Ciencia Ficción">
+                <titulo nombre="Stranger Things" duracion="50" />
+                <titulo nombre="The 100" duracion="60" />
+                <titulo nombre="The Mandalorian" duracion="38" />
+                <titulo nombre="The Last of Us" duracion="58" />
+            </genero>
+        </programas>
+    </contenido>
+</catalogoVOD>
