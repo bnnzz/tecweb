@@ -7,38 +7,34 @@ var baseJSON = {
     "detalles": "NA",
     "imagen": "img/default.png"
   };
-
-$(document).ready(function(){
+  $(document).ready(function () {
     let edit = false;
 
-    let JsonString = JSON.stringify(baseJSON,null,2);
+    let JsonString = JSON.stringify(baseJSON, null, 2);
     $('#description').val(JsonString);
     $('#product-result').hide();
     listarProductos();
 
     function listarProductos() {
         $.ajax({
-            url: './backend/product-list.php',
+            url: 'http://localhost/tecweb/actividades/a09/backend/products', // Ruta Slim para listar productos
             type: 'GET',
-            success: function(response) {
+            success: function (response) {
                 console.log(response);
-                // SE OBTIENE EL OBJETO DE DATOS A PARTIR DE UN STRING JSON
                 const productos = JSON.parse(response);
-            
-                // SE VERIFICA SI EL OBJETO JSON TIENE DATOS
-                if(Object.keys(productos).length > 0) {
-                    // SE CREA UNA PLANTILLA PARA CREAR LAS FILAS A INSERTAR EN EL DOCUMENTO HTML
+
+                if (Object.keys(productos).length > 0) {
                     let template = '';
 
                     productos.forEach(producto => {
-                        // SE CREA UNA LISTA HTML CON LA DESCRIPCIÓN DEL PRODUCTO
-                        let descripcion = '';
-                        descripcion += '<li>precio: '+producto.precio+'</li>';
-                        descripcion += '<li>unidades: '+producto.unidades+'</li>';
-                        descripcion += '<li>modelo: '+producto.modelo+'</li>';
-                        descripcion += '<li>marca: '+producto.marca+'</li>';
-                        descripcion += '<li>detalles: '+producto.detalles+'</li>';
-                    
+                        let descripcion = `
+                            <li>precio: ${producto.precio}</li>
+                            <li>unidades: ${producto.unidades}</li>
+                            <li>modelo: ${producto.modelo}</li>
+                            <li>marca: ${producto.marca}</li>
+                            <li>detalles: ${producto.detalles}</li>
+                        `;
+
                         template += `
                             <tr productId="${producto.id}">
                                 <td>${producto.id}</td>
@@ -52,40 +48,35 @@ $(document).ready(function(){
                             </tr>
                         `;
                     });
-                    // SE INSERTA LA PLANTILLA EN EL ELEMENTO CON ID "productos"
                     $('#products').html(template);
                 }
             }
         });
     }
 
-    $('#search').keyup(function() {
-        if($('#search').val()) {
+    $('#search').keyup(function () {
+        if ($('#search').val()) {
             let search = $('#search').val();
             $.ajax({
-                url: './backend/product-search.php?search='+$('#search').val(),
-                data: {search},
+                url: `http://localhost/tecweb/actividades/a09/backend/product/search?search=${search}`, // Ruta Slim para buscar productos
                 type: 'GET',
                 success: function (response) {
-                    if(!response.error) {
-                        // SE OBTIENE EL OBJETO DE DATOS A PARTIR DE UN STRING JSON
+                    if (!response.error) {
                         const productos = JSON.parse(response);
-                        
-                        // SE VERIFICA SI EL OBJETO JSON TIENE DATOS
-                        if(Object.keys(productos).length > 0) {
-                            // SE CREA UNA PLANTILLA PARA CREAR LAS FILAS A INSERTAR EN EL DOCUMENTO HTML
+
+                        if (Object.keys(productos).length > 0) {
                             let template = '';
                             let template_bar = '';
 
                             productos.forEach(producto => {
-                                // SE CREA UNA LISTA HTML CON LA DESCRIPCIÓN DEL PRODUCTO
-                                let descripcion = '';
-                                descripcion += '<li>precio: '+producto.precio+'</li>';
-                                descripcion += '<li>unidades: '+producto.unidades+'</li>';
-                                descripcion += '<li>modelo: '+producto.modelo+'</li>';
-                                descripcion += '<li>marca: '+producto.marca+'</li>';
-                                descripcion += '<li>detalles: '+producto.detalles+'</li>';
-                            
+                                let descripcion = `
+                                    <li>precio: ${producto.precio}</li>
+                                    <li>unidades: ${producto.unidades}</li>
+                                    <li>modelo: ${producto.modelo}</li>
+                                    <li>marca: ${producto.marca}</li>
+                                    <li>detalles: ${producto.detalles}</li>
+                                `;
+
                                 template += `
                                     <tr productId="${producto.id}">
                                         <td>${producto.id}</td>
@@ -100,21 +91,17 @@ $(document).ready(function(){
                                 `;
 
                                 template_bar += `
-                                    <li>${producto.nombre}</il>
+                                    <li>${producto.nombre}</li>
                                 `;
                             });
-                            // SE HACE VISIBLE LA BARRA DE ESTADO
                             $('#product-result').show();
-                            // SE INSERTA LA PLANTILLA PARA LA BARRA DE ESTADO
                             $('#container').html(template_bar);
-                            // SE INSERTA LA PLANTILLA EN EL ELEMENTO CON ID "productos"
-                            $('#products').html(template);    
+                            $('#products').html(template);
                         }
                     }
                 }
             });
-        }
-        else {
+        } else {
             $('#product-result').hide();
         }
     });
@@ -122,76 +109,66 @@ $(document).ready(function(){
     $('#product-form').submit(e => {
         e.preventDefault();
 
-        // SE CONVIERTE EL JSON DE STRING A OBJETO
-        let postData = JSON.parse( $('#description').val() );
-        // SE AGREGA AL JSON EL NOMBRE DEL PRODUCTO
+        let postData = JSON.parse($('#description').val());
         postData['nombre'] = $('#name').val();
         postData['id'] = $('#productId').val();
 
-        /**
-         * AQUÍ DEBES AGREGAR LAS VALIDACIONES DE LOS DATOS EN EL JSON
-         * --> EN CASO DE NO HABER ERRORES, SE ENVIAR EL PRODUCTO A AGREGAR
-         **/
+        const url = edit === false ? 'http://localhost/tecweb/actividades/a09/backend/product' : 'http://localhost/tecweb/actividades/a09/backend/product';
+        const method = edit === false ? 'POST' : 'PUT'; // Método HTTP según la acción
 
-        const url = edit === false ? './backend/product-add.php' : './backend/product-edit.php';
-        
-        $.post(url, postData, (response) => {
-            console.log(response);
-            // SE OBTIENE EL OBJETO DE DATOS A PARTIR DE UN STRING JSON
-            let respuesta = JSON.parse(response);
-            // SE CREA UNA PLANTILLA PARA CREAR INFORMACIÓN DE LA BARRA DE ESTADO
-            let template_bar = '';
-            template_bar += `
-                        <li style="list-style: none;">status: ${respuesta.status}</li>
-                        <li style="list-style: none;">message: ${respuesta.message}</li>
-                    `;
-            // SE REINICIA EL FORMULARIO
-            $('#name').val('');
-            $('#description').val(JsonString);
-            // SE HACE VISIBLE LA BARRA DE ESTADO
-            $('#product-result').show();
-            // SE INSERTA LA PLANTILLA PARA LA BARRA DE ESTADO
-            $('#container').html(template_bar);
-            // SE LISTAN TODOS LOS PRODUCTOS
-            listarProductos();
-            // SE REGRESA LA BANDERA DE EDICIÓN A false
-            edit = false;
+        $.ajax({
+            url: url,
+            type: method,
+            data: JSON.stringify(postData),
+            contentType: 'application/json',
+            success: function (response) {
+                console.log(response);
+                let respuesta = JSON.parse(response);
+                let template_bar = `
+                    <li style="list-style: none;">status: ${respuesta.status}</li>
+                    <li style="list-style: none;">message: ${respuesta.message}</li>
+                `;
+                $('#name').val('');
+                $('#description').val(JsonString);
+                $('#product-result').show();
+                $('#container').html(template_bar);
+                listarProductos();
+                edit = false;
+            }
         });
     });
 
-    $(document).on('click', '.product-delete', (e) => {
-        if(confirm('¿Realmente deseas eliminar el producto?')) {
+    $(document).on('click', '.product-delete', function () {
+        if (confirm('¿Realmente deseas eliminar el producto?')) {
             const element = $(this)[0].activeElement.parentElement.parentElement;
             const id = $(element).attr('productId');
-            $.post('./backend/product-delete.php', {id}, (response) => {
-                $('#product-result').hide();
-                listarProductos();
+
+            $.ajax({
+                url: `http://localhost/tecweb/actividades/a09/backend/product/${id}`, // Ruta Slim para eliminar producto
+                type: 'DELETE',
+                success: function (response) {
+                    console.log(response);
+                    listarProductos();
+                }
             });
         }
     });
 
-    $(document).on('click', '.product-item', (e) => {
+    $(document).on('click', '.product-item', function (e) {
+        e.preventDefault();
         const element = $(this)[0].activeElement.parentElement.parentElement;
         const id = $(element).attr('productId');
-        $.post('./backend/product-single.php', {id}, (response) => {
-            // SE CONVIERTE A OBJETO EL JSON OBTENIDO
-            let product = JSON.parse(response);
-            // SE INSERTAN LOS DATOS ESPECIALES EN LOS CAMPOS CORRESPONDIENTES
+
+        $.get(`http://localhost/tecweb/actividades/a09/backend/product/${id}`, function (data) { // Ruta Slim para obtener un producto por ID
+            let product = JSON.parse(data);
             $('#name').val(product.nombre);
-            // EL ID SE INSERTA EN UN CAMPO OCULTO PARA USARLO DESPUÉS PARA LA ACTUALIZACIÓN
             $('#productId').val(product.id);
-            // SE ELIMINA nombre, eliminado E id PARA PODER MOSTRAR EL JSON EN EL <textarea>
-            delete(product.nombre);
-            delete(product.eliminado);
-            delete(product.id);
-            // SE CONVIERTE EL OBJETO JSON EN STRING
-            let JsonString = JSON.stringify(product,null,2);
-            // SE MUESTRA STRING EN EL <textarea>
+            delete product.nombre;
+            delete product.eliminado;
+            delete product.id;
+            let JsonString = JSON.stringify(product, null, 2);
             $('#description').val(JsonString);
-            
-            // SE PONE LA BANDERA DE EDICIÓN EN true
             edit = true;
         });
-        e.preventDefault();
-    });    
+    });
 });
