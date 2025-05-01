@@ -10,7 +10,7 @@ require '../vendor/autoload.php';
 
 $app = AppFactory::create();
 $app->addBodyParsingMiddleware();
-$app->setBasepath("/tecWeb/Actividades/a09/product_app/backend");
+$app->setBasepath("/tecweb/Actividades/a09/product_app/backend");
 
 
 $app->get('/product/{id}', function(Request $request, Response $response, $args) {
