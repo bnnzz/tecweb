@@ -17,8 +17,7 @@ var baseJSON = {
 
     function listarProductos() {
         $.ajax({
-            url: 'http://localhost/tecweb/actividades/a09/backend/products', // Ruta Slim para listar productos
-            type: 'GET',
+            url: 'http://localhost/tecweb/actividades/a09/backend/products', type: 'GET',
             success: function (response) {
                 console.log(response);
                 const productos = JSON.parse(response);
